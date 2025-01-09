@@ -12,8 +12,6 @@ emiin_ner = data["Эмийн нэр"]
 df_data = pd.DataFrame(emiin_ner)
 most_common_names = df_data["Эмийн нэр"].value_counts()
 
-
-#Давтамжийг Dataframe болгон хувиргах
 most_common_df = most_common_names.reset_index()
 most_common_df.columns = ["Эмийн нэр", "Давтамж"]
 
@@ -51,12 +49,6 @@ def classify(name):
 most_common_df["Ангилал"] = most_common_df["Эмийн нэр"].apply(classify)
 
 filtered_data = most_common_df[["Эмийн нэр", "Ангилал"]]
-
-df = pd.DataFrame(filtered_data)
-
-next_filter = df[(df["Эмийн нэр"].notna()) & (df["Ангилал"] == "Бусад")]
-
-next_filter.head(1000)
 
 filtered_data.to_excel(r'D:\textanalyst\filtered_data.xlsx', index=False)
 
